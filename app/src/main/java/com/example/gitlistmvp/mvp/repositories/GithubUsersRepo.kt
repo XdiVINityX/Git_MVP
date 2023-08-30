@@ -14,13 +14,7 @@ class GithubUsersRepo {
 
 
     fun getUsersObservableFromIterable(): Observable<GithubUser> {
-        return Observable.fromIterable(listOf(
-            GithubUser("login1"),
-            GithubUser("login2"),
-            GithubUser("login3"),
-            GithubUser("login4"),
-            GithubUser("login5")
-        ))
+        return Observable.fromIterable(repositories)
     }
 
 
