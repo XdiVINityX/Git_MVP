@@ -16,11 +16,6 @@ class UserFragment : MvpAppCompatFragment(), IUserView{
     private var _binding : FragmentUserBinding? = null
     private val binding get() = _binding!!
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

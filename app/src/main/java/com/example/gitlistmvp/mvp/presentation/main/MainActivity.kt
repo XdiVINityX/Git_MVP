@@ -5,7 +5,7 @@ import com.example.lessonone.R
 import com.example.lessonone.databinding.ActivityMainBinding
 import com.example.gitlistmvp.mvp.App
 import com.example.gitlistmvp.mvp.repositories.GithubUsersRepo
-import com.example.gitlistmvp.mvp.presentation.adapter.UserRVAdapter
+import com.example.gitlistmvp.mvp.presentation.users.adapter.UserRVAdapter
 import com.example.gitlistmvp.mvp.presentation.navigation.BackButtonListener
 import com.example.gitlistmvp.mvp.presentation.navigation.Screens
 import com.github.terrakok.cicerone.androidx.AppNavigator

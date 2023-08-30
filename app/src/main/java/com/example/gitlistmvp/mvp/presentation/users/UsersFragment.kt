@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessonone.databinding.FragmentUsersBinding
 import com.example.gitlistmvp.mvp.App
-import com.example.gitlistmvp.mvp.presentation.adapter.UserRVAdapter
+import com.example.gitlistmvp.mvp.presentation.users.adapter.UserRVAdapter
 import com.example.gitlistmvp.mvp.presentation.navigation.BackButtonListener
 import com.example.gitlistmvp.mvp.repositories.GithubUsersRepo
 import moxy.MvpAppCompatFragment
@@ -18,9 +18,8 @@ class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
 
     private var _binding : FragmentUsersBinding? = null
     private val binding get() = _binding!!
-
-
     private var adapter : UserRVAdapter? = null
+
     private val presenter by moxyPresenter{
         UsersPresenter(GithubUsersRepo(), App.instanceApp.router)
     }
@@ -35,10 +34,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
 
 
     companion object {
-
         fun newInstance() = UsersFragment()
-
-
     }
 
     override fun init() {
@@ -57,7 +53,6 @@ class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
     }
 
     override fun backPressed() = presenter.backPressed()
-
 
 
 }
