@@ -1,5 +1,6 @@
 package com.example.gitlistmvp.mvp.presentation.navigation
 
+import com.example.gitlistmvp.mvp.model.GithubUser
 import com.example.gitlistmvp.mvp.presentation.user.UserFragment
 import com.example.gitlistmvp.mvp.presentation.users.UsersFragment
 import com.github.terrakok.cicerone.Screen
@@ -10,8 +11,9 @@ class Screens : IScreen{
         return FragmentScreen{UsersFragment.newInstance()}
     }
 
-    override fun user(login : String): FragmentScreen {
-        return FragmentScreen{UserFragment.newInstance(login)}
+
+    override fun user(user : GithubUser): FragmentScreen {
+        return FragmentScreen{UserFragment.newInstance(user)}
     }
 
 }

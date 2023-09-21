@@ -2,7 +2,6 @@ package com.example.gitlistmvp.mvp.presentation.main
 
 
 import com.example.gitlistmvp.mvp.presentation.navigation.IScreen
-import com.example.gitlistmvp.mvp.repositories.GithubUsersRepo
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 

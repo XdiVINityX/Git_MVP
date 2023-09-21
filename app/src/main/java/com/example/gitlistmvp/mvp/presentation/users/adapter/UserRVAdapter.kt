@@ -21,9 +21,6 @@ class UserRVAdapter(val presenter: IUserListPresenter) :
         override var pos: Int = -1
         override fun setLogin(login: String) {
             vb.tvLogin.text = login
-            itemView.setOnClickListener{
-                presenter.openUserDetail(login)
-            }
         }
     }
 

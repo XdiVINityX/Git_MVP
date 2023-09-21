@@ -13,10 +13,10 @@ class UsersListPresenter(private val router: Router, private val screens: IScree
 
     override fun bindView(view: IUserItemView) {
         val user = users[view.pos]
-        view.setLogin(user.login)
+        user.login?.let {
+            view.setLogin(it)
+        }
     }
 
-    override fun openUserDetail(login : String){
-        router.navigateTo(screens.user(login))
-    }
+
 }

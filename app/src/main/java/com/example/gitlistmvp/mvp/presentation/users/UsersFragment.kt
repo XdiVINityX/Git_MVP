@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessonone.databinding.FragmentUsersBinding
 import com.example.gitlistmvp.mvp.App
+import com.example.gitlistmvp.mvp.network.api.IGitUsersApi
+import com.example.gitlistmvp.mvp.network.retrofit.RetrofitClient
 import com.example.gitlistmvp.mvp.presentation.users.adapter.UserRVAdapter
 import com.example.gitlistmvp.mvp.presentation.navigation.BackButtonListener
-import com.example.gitlistmvp.mvp.repositories.GithubUsersRepo
+import com.example.gitlistmvp.mvp.repositories.RetrofitGitHubUsersRepo
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -21,7 +24,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
     private var adapter : UserRVAdapter? = null
 
     private val presenter by moxyPresenter{
-        UsersPresenter(GithubUsersRepo(), App.instanceApp.router)
+        UsersPresenter(RetrofitGitHubUsersRepo(RetrofitClient.ipi), App.instanceApp.router, AndroidSchedulers.mainThread(), App.instanceApp.screens)
     }
 
     override fun onCreateView(

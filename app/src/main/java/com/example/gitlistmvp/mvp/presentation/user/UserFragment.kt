@@ -1,11 +1,10 @@
 package com.example.gitlistmvp.mvp.presentation.user
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.lessonone.R
+import com.example.gitlistmvp.mvp.model.GithubUser
 import com.example.lessonone.databinding.FragmentUserBinding
 import moxy.MvpAppCompatFragment
 
@@ -32,14 +31,15 @@ class UserFragment : MvpAppCompatFragment(), IUserView{
 
     companion object {
 
-        fun newInstance(login : String) : UserFragment{
+        fun newInstance(user : GithubUser) : UserFragment{
             val arg = Bundle()
-            arg.putString(LOGIN,login)
+            arg.putParcelable(LOGIN,user)
             val fragment = UserFragment()
             fragment.arguments = arg
             return fragment
         }
         private const val LOGIN = "LOGIN"
+
     }
 
     override fun onDestroyView() {
