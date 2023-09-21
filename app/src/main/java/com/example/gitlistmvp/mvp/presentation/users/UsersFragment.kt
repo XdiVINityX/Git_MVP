@@ -9,6 +9,7 @@ import com.example.lessonone.databinding.FragmentUsersBinding
 import com.example.gitlistmvp.mvp.App
 import com.example.gitlistmvp.mvp.network.api.IGitUsersApi
 import com.example.gitlistmvp.mvp.network.retrofit.RetrofitClient
+import com.example.gitlistmvp.mvp.presentation.imageLoader.GlideImageLoader
 import com.example.gitlistmvp.mvp.presentation.users.adapter.UserRVAdapter
 import com.example.gitlistmvp.mvp.presentation.navigation.BackButtonListener
 import com.example.gitlistmvp.mvp.repositories.RetrofitGitHubUsersRepo
@@ -41,7 +42,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
     }
 
     override fun init() {
-        adapter = UserRVAdapter(presenter.usersListPresenter)
+        adapter = UserRVAdapter(presenter.usersListPresenter, GlideImageLoader())
         binding.recyclerViewUser.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewUser.adapter = adapter
     }

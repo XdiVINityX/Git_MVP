@@ -16,6 +16,9 @@ class UsersListPresenter(private val router: Router, private val screens: IScree
         user.login?.let {
             view.setLogin(it)
         }
+        user.avatarUrl?.let {
+            view.setAvatar(it)
+        }
     }
 
 

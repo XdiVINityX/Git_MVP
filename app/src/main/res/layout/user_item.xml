@@ -6,6 +6,12 @@
     android:orientation="horizontal"
     android:foreground="?attr/selectableItemBackground"
     android:gravity="center_vertical">
+    <ImageView
+        android:id="@+id/avatarImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="15dp">
+    </ImageView>
     <TextView
         android:text="text"
         android:id="@+id/tv_login"

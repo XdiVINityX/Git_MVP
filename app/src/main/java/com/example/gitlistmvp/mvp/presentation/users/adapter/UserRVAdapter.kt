@@ -2,10 +2,12 @@ package com.example.gitlistmvp.mvp.presentation.users.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gitlistmvp.mvp.presentation.imageLoader.IImageLoader
 import com.example.lessonone.databinding.UserItemBinding
 
-class UserRVAdapter(val presenter: IUserListPresenter) :
+class UserRVAdapter(val presenter: IUserListPresenter, val imageLoader: IImageLoader<ImageView>) :
     RecyclerView.Adapter<UserRVAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -21,6 +23,9 @@ class UserRVAdapter(val presenter: IUserListPresenter) :
         override var pos: Int = -1
         override fun setLogin(login: String) {
             vb.tvLogin.text = login
+        }
+        override fun setAvatar(url: String) {
+            imageLoader.loadInto(url,vb.avatarImageView)
         }
     }
 

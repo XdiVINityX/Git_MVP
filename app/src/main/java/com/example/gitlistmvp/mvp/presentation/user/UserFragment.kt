@@ -50,4 +50,6 @@ class UserFragment : MvpAppCompatFragment(), IUserView{
     override fun setLogin(login: String) {
         binding.loginTextView.text = login
     }
+
+
 }
