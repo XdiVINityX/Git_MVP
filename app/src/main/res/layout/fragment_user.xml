@@ -4,12 +4,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.gitlistmvp.mvp.presentation.user.UserFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewUserRepo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/user_detail_item">
+    </androidx.recyclerview.widget.RecyclerView>
+
     <TextView
         android:id="@+id/loginTextView"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

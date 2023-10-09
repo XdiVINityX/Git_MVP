@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gitlistmvp.mvp.presentation.imageLoader.IImageLoader
 import com.example.lessonone.databinding.UserItemBinding
 
-class UserRVAdapter(val presenter: IUserListPresenter, val imageLoader: IImageLoader<ImageView>) :
-    RecyclerView.Adapter<UserRVAdapter.MyViewHolder>() {
+class UsersRVAdapter(val presenter: IUserListPresenter, val imageLoader: IImageLoader<ImageView>) :
+    RecyclerView.Adapter<UsersRVAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(UserItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)).apply {
