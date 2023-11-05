@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gitlistmvp.mvp.App
 import com.example.gitlistmvp.mvp.model.GithubUser
+import com.example.gitlistmvp.mvp.model.room.Database
 import com.example.gitlistmvp.mvp.network.retrofit.RetrofitClient
+import com.example.gitlistmvp.mvp.network.status.AndroidNetworkStatus
 import com.example.gitlistmvp.mvp.presentation.user.adapter.UserRVAdapter
 import com.example.gitlistmvp.mvp.presentation.user.adapter.UserRepoListPresenter
 import com.example.gitlistmvp.mvp.repositories.RetrofitGitHubUsersRepo
@@ -25,7 +28,7 @@ class UserFragment : MvpAppCompatFragment(), IUserView{
     private var userRVAdapter : UserRVAdapter? = null
 
     private val presenter by  moxyPresenter {
-        UserPresenter(RetrofitGitHubUsersRepo(RetrofitClient.api), AndroidSchedulers.mainThread())
+        UserPresenter(RetrofitGitHubUsersRepo(RetrofitClient.api, AndroidNetworkStatus(App.instanceApp), Database.getInstance()), AndroidSchedulers.mainThread())
     }
 
     override fun onCreateView(
@@ -64,7 +67,6 @@ class UserFragment : MvpAppCompatFragment(), IUserView{
     }
 
     companion object {
-
         fun newInstance(user : GithubUser) : UserFragment{
             val arg = Bundle()
             arg.putParcelable(USER,user)

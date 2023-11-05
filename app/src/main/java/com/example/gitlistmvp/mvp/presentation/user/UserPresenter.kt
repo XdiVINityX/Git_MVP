@@ -5,6 +5,7 @@ import com.example.gitlistmvp.mvp.model.GithubUser
 import com.example.gitlistmvp.mvp.network.api.IGitUsersApi
 import com.example.gitlistmvp.mvp.presentation.user.adapter.UserRepoListPresenter
 import com.example.gitlistmvp.mvp.repositories.IGitHubUsersRepo
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 
@@ -33,5 +34,7 @@ class UserPresenter(
             })
 
     }
+
+    val observable = Observable.just(1,2,3)
 
 }

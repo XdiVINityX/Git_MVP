@@ -8,7 +8,7 @@ data class UserRepos (
 @Expose var id                    : Int?              = null,
      var nodeId                   : String?           = null,
      var name                     : String?           = null,
-@Expose   var fullName                 : String?           = null,
+@Expose var fullName              : String?           = null,
      var private                  : Boolean?          = null,
      var owner                    : Owner?            = null,
      var htmlUrl                  : String?           = null,
@@ -69,7 +69,7 @@ data class UserRepos (
      var hasWiki                  : Boolean?          = null,
      var hasPages                 : Boolean?          = null,
      var hasDiscussions           : Boolean?          = null,
-     var forksCount               : Int?              = null,
+@Expose  var forksCount           : Int?              = null,
      var mirrorUrl                : String?           = null,
      var archived                 : Boolean?          = null,
      var disabled                 : Boolean?          = null,
@@ -84,5 +84,4 @@ data class UserRepos (
      var openIssues               : Int?              = null,
      var watchers                 : Int?              = null,
      var defaultBranch            : String?           = null
-
 )

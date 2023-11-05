@@ -1,14 +1,11 @@
 package com.example.gitlistmvp.mvp.presentation.users
 
-import com.example.gitlistmvp.mvp.model.GithubUser
 import com.example.gitlistmvp.mvp.presentation.navigation.IScreen
 import com.example.gitlistmvp.mvp.presentation.users.adapter.UsersListPresenter
 import com.example.gitlistmvp.mvp.presentation.navigation.Screens
 import com.example.gitlistmvp.mvp.repositories.IGitHubUsersRepo
 import com.github.terrakok.cicerone.Router
-import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.core.Scheduler
-import io.reactivex.rxjava3.disposables.Disposable
 import moxy.MvpPresenter
 
 class UsersPresenter(
@@ -47,6 +44,29 @@ class UsersPresenter(
         router.exit()
         return true
     }
+
+    /*fun test(){
+        Observable.just("Hey")
+            .subscribeOn(Scheduler.io())
+            .map {
+                printThread()
+                it.length
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe(Schedulers.computation())
+            .flatMap {
+                printThread()
+                Observable.timer(1,TimeUnit.SECONDS)
+                    .subscribeOn(Schedulers.single())
+                    .doOnSubscribe{
+                        printThread()
+                    }
+                    .subscribe{
+                        printThread()
+                    }
+            }
+    }
+*/
 
 
 }

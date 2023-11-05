@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessonone.databinding.FragmentUsersBinding
 import com.example.gitlistmvp.mvp.App
+import com.example.gitlistmvp.mvp.model.room.Database
 import com.example.gitlistmvp.mvp.network.retrofit.RetrofitClient
+import com.example.gitlistmvp.mvp.network.status.AndroidNetworkStatus
 import com.example.gitlistmvp.mvp.presentation.imageLoader.GlideImageLoader
 import com.example.gitlistmvp.mvp.presentation.users.adapter.UsersRVAdapter
 import com.example.gitlistmvp.mvp.presentation.navigation.BackButtonListener
@@ -23,8 +25,15 @@ class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
     private val binding get() = _binding!!
     private var adapter : UsersRVAdapter? = null
 
-    private val presenter by moxyPresenter{
-        UsersPresenter(RetrofitGitHubUsersRepo(RetrofitClient.api), App.instanceApp.router, AndroidSchedulers.mainThread(), App.instanceApp.screens)
+    private val presenter by moxyPresenter {
+        UsersPresenter(
+            RetrofitGitHubUsersRepo(
+                RetrofitClient.api,
+                AndroidNetworkStatus(App.instanceApp),
+                Database.getInstance()
+            ),
+            App.instanceApp.router, AndroidSchedulers.mainThread(), App.instanceApp.screens
+        )
     }
 
     override fun onCreateView(
