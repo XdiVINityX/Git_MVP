@@ -2,15 +2,15 @@ package com.example.gitlistmvp.mvp.presentation.user
 
 import android.util.Log
 import com.example.gitlistmvp.mvp.model.GithubUser
-import com.example.gitlistmvp.mvp.network.api.IGitUsersApi
 import com.example.gitlistmvp.mvp.presentation.user.adapter.UserRepoListPresenter
-import com.example.gitlistmvp.mvp.repositories.IGitHubUsersRepo
+import com.example.gitlistmvp.mvp.repositories.RetrofitGitHubUserRepositoryRepo.IRetrofitGithubUserRepositoriesRepo
+import com.example.gitlistmvp.mvp.repositories.RetrofitGithubUsersRepo.IGitHubUsersRepo
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
 
 class UserPresenter(
-    private val retrofit: IGitHubUsersRepo,
+    private val retrofit: IRetrofitGithubUserRepositoriesRepo,
     private val mainThreadScheduler: Scheduler
 ) : MvpPresenter<IUserView>() {
 
@@ -21,8 +21,8 @@ class UserPresenter(
         viewState.init()
     }
 
-     fun loadData(login: String) {
-        val disposable = retrofit.getUserRepos(login)
+     fun loadData(user : GithubUser) {
+        val disposable = retrofit.getUserRepos(user)
             .observeOn(mainThreadScheduler)
             .subscribe({
                 Log.d("list", "loadData: $it")
@@ -35,6 +35,6 @@ class UserPresenter(
 
     }
 
-    val observable = Observable.just(1,2,3)
+
 
 }

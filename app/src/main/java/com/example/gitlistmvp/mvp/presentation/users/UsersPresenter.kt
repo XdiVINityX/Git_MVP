@@ -3,7 +3,7 @@ package com.example.gitlistmvp.mvp.presentation.users
 import com.example.gitlistmvp.mvp.presentation.navigation.IScreen
 import com.example.gitlistmvp.mvp.presentation.users.adapter.UsersListPresenter
 import com.example.gitlistmvp.mvp.presentation.navigation.Screens
-import com.example.gitlistmvp.mvp.repositories.IGitHubUsersRepo
+import com.example.gitlistmvp.mvp.repositories.RetrofitGithubUsersRepo.IGitHubUsersRepo
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
@@ -15,7 +15,7 @@ class UsersPresenter(
     private val screens: IScreen
 ) : MvpPresenter<UsersView>() {
 
-     val usersListPresenter = UsersListPresenter(router, Screens())
+     val usersListPresenter = UsersListPresenter(router, screens)
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -45,28 +45,6 @@ class UsersPresenter(
         return true
     }
 
-    /*fun test(){
-        Observable.just("Hey")
-            .subscribeOn(Scheduler.io())
-            .map {
-                printThread()
-                it.length
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe(Schedulers.computation())
-            .flatMap {
-                printThread()
-                Observable.timer(1,TimeUnit.SECONDS)
-                    .subscribeOn(Schedulers.single())
-                    .doOnSubscribe{
-                        printThread()
-                    }
-                    .subscribe{
-                        printThread()
-                    }
-            }
-    }
-*/
 
 
 }

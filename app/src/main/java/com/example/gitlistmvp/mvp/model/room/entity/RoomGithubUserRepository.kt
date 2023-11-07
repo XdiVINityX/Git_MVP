@@ -19,7 +19,7 @@ import com.example.gitlistmvp.mvp.model.room.entity.RoomGithubUser
 
 data class RoomGithubUserRepository(
     @PrimaryKey var id: String,
-    var name: String,
+    var fullName: String,
     var forksCount: Int,
     var userId: String
 )

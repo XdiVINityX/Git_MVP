@@ -5,8 +5,12 @@ import com.example.gitlistmvp.mvp.presentation.navigation.IScreen
 import com.example.gitlistmvp.mvp.presentation.user.adapter.IItemViewUserRepo
 import com.github.terrakok.cicerone.Router
 
-class UsersListPresenter(private val router: Router, private val screens: IScreen) :
+class UsersListPresenter(
+    private val router: Router,
+    private val screens: IScreen
+) :
     IUserListPresenter {
+
     val users = mutableListOf<GithubUser>()
     override var itemClickListener: ((IUserItemView) -> Unit)? = null
 

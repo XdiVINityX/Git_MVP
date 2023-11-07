@@ -15,12 +15,13 @@ class App  : Application() {
     override fun onCreate() {
         super.onCreate()
         instanceApp = this
+ //Database.deleteDB(this)
         Database.create(this)
     }
 
     private val cicerone : Cicerone<Router> by lazy {Cicerone.create()}
-    val navigatorHolder get() = cicerone.getNavigatorHolder()
     val router get() = cicerone.router
+    val navigatorHolder get() = cicerone.getNavigatorHolder()
     val screens : IScreen = Screens()
 
 

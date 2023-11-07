@@ -1,4 +1,4 @@
-package com.example.gitlistmvp.mvp.network.status
+package com.example.gitlistmvp.mvp.network.retrofit.status
 
 
 import io.reactivex.rxjava3.core.Observable

@@ -11,7 +11,7 @@ import java.lang.RuntimeException
 abstract class Database : RoomDatabase() {
 
     abstract val githubUsersDAO : GithubUserDAO
-    abstract val usersReposDAO : UserReposDAO
+    abstract val userReposDAO : UserReposDAO
 
     companion object{
         private const val DB_NAME = "database.db"
@@ -23,7 +23,13 @@ abstract class Database : RoomDatabase() {
             if (instance ==null){
                 instance = Room.databaseBuilder(context!!,Database::class.java, DB_NAME).build()
             }
-
+        }
+        fun deleteDB(context : Context?){
+            context?.let {
+               val dbPath = it.getDatabasePath(DB_NAME)
+                dbPath.delete()
+                instance = null
+            }
         }
     }
 }

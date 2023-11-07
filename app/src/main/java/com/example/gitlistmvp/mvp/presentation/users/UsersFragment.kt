@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessonone.databinding.FragmentUsersBinding
 import com.example.gitlistmvp.mvp.App
-import com.example.gitlistmvp.mvp.model.room.Database
+import com.example.gitlistmvp.mvp.model.cache.cacheOfUsers.CacheOfGithubUsers
 import com.example.gitlistmvp.mvp.network.retrofit.RetrofitClient
-import com.example.gitlistmvp.mvp.network.status.AndroidNetworkStatus
+import com.example.gitlistmvp.mvp.network.retrofit.status.AndroidNetworkStatus
 import com.example.gitlistmvp.mvp.presentation.imageLoader.GlideImageLoader
 import com.example.gitlistmvp.mvp.presentation.users.adapter.UsersRVAdapter
 import com.example.gitlistmvp.mvp.presentation.navigation.BackButtonListener
-import com.example.gitlistmvp.mvp.repositories.RetrofitGitHubUsersRepo
+import com.example.gitlistmvp.mvp.repositories.RetrofitGithubUsersRepo.RetrofitGithubUsersRepo
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -27,10 +27,10 @@ class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
 
     private val presenter by moxyPresenter {
         UsersPresenter(
-            RetrofitGitHubUsersRepo(
+            RetrofitGithubUsersRepo(
                 RetrofitClient.api,
                 AndroidNetworkStatus(App.instanceApp),
-                Database.getInstance()
+                CacheOfGithubUsers
             ),
             App.instanceApp.router, AndroidSchedulers.mainThread(), App.instanceApp.screens
         )
