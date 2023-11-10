@@ -6,12 +6,13 @@ import com.example.gitlistmvp.mvp.model.GithubUser
 import com.example.gitlistmvp.mvp.model.cache.cacheOfUserRepositories.ICacheGithubUserRepositories
 import com.example.gitlistmvp.mvp.network.api.IGitUsersApi
 import com.example.gitlistmvp.mvp.network.retrofit.status.AndroidNetworkStatus
+import com.example.gitlistmvp.mvp.network.retrofit.status.INetworkStatus
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class RetrofitGithubUserRepositoriesRepo(
     private val api: IGitUsersApi,
-    private val networkStatus: AndroidNetworkStatus,
+    private val networkStatus: INetworkStatus,
     private val cache: ICacheGithubUserRepositories
 ) : IRetrofitGithubUserRepositoriesRepo {
 
@@ -27,7 +28,6 @@ class RetrofitGithubUserRepositoriesRepo(
                             }
                         } ?: Single.error<List<UserRepos>>(RuntimeException("User has no repos url"))
                         .subscribeOn(Schedulers.io())
-
             }else {
                 cache.getFromCacheUserRepos(user)
             }

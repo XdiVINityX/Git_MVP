@@ -1,13 +1,21 @@
 package com.example.gitlistmvp.mvp
 
 import android.app.Application
+import com.example.gitlistmvp.mvp.di.AppComponent
+import com.example.gitlistmvp.mvp.di.DaggerAppComponent
+import com.example.gitlistmvp.mvp.di.modules.ApplicationModule
 import com.example.gitlistmvp.mvp.model.room.Database
 import com.example.gitlistmvp.mvp.presentation.navigation.IScreen
 import com.example.gitlistmvp.mvp.presentation.navigation.Screens
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
 
+
 class App  : Application() {
+
+
+    lateinit var appComponent : AppComponent
+
     companion object {
         lateinit var instanceApp : App
     }
@@ -15,14 +23,10 @@ class App  : Application() {
     override fun onCreate() {
         super.onCreate()
         instanceApp = this
- //Database.deleteDB(this)
-        Database.create(this)
+
+        appComponent = DaggerAppComponent.builder()
+            .applicationModule(ApplicationModule(this))
+            .build()
     }
-
-    private val cicerone : Cicerone<Router> by lazy {Cicerone.create()}
-    val router get() = cicerone.router
-    val navigatorHolder get() = cicerone.getNavigatorHolder()
-    val screens : IScreen = Screens()
-
 
 }

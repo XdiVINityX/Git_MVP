@@ -7,29 +7,33 @@ import com.example.gitlistmvp.mvp.repositories.RetrofitGithubUsersRepo.IGitHubUs
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class UsersPresenter(
-    private val retrofitGitHubUsersRepo: IGitHubUsersRepo,
-    private val router: Router,
-    private val mainThreadScheduler: Scheduler,
-    private val screens: IScreen
-) : MvpPresenter<UsersView>() {
+class UsersPresenter(private val mainThreadScheduler: Scheduler) : MvpPresenter<UsersView>() {
 
-     val usersListPresenter = UsersListPresenter(router, screens)
+    @Inject
+    lateinit var router: Router
+    @Inject
+    lateinit var retrofitGitHubUsersRepo: IGitHubUsersRepo
+    @Inject
+    lateinit var screens: IScreen
+
+    lateinit var  usersListPresenter : UsersListPresenter
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        usersListPresenter = UsersListPresenter(router, screens)
         viewState.init()
         loadData()
 
-        usersListPresenter.itemClickListener = {itemView ->
+        usersListPresenter.itemClickListener = { itemView ->
             val user = usersListPresenter.users[itemView.pos]
             router.navigateTo(screens.user(user))
         }
     }
 
     private fun loadData() {
-      val disposable = retrofitGitHubUsersRepo.getUsers()
+        val disposable = retrofitGitHubUsersRepo.getUsers()
             .observeOn(mainThreadScheduler)
             .subscribe({
                 usersListPresenter.users.clear()
@@ -44,7 +48,6 @@ class UsersPresenter(
         router.exit()
         return true
     }
-
 
 
 }

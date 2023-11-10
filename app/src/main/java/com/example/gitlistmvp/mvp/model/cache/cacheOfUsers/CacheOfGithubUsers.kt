@@ -5,8 +5,8 @@ import com.example.gitlistmvp.mvp.model.room.Database
 import com.example.gitlistmvp.mvp.model.room.entity.RoomGithubUser
 import io.reactivex.rxjava3.core.Single
 
-object CacheOfGithubUsers : ICacheGithubUsersDataBase {
-    private val database: Database = Database.getInstance()
+class CacheOfGithubUsers(private val database: Database) : ICacheGithubUsersDataBase {
+
 
     override fun saveToCacheGithubUsers(githubUserList : List<GithubUser>) {
         val newListOfRoomGithubUser = githubUserList.map { user ->

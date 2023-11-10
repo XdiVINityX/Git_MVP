@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitlistmvp.mvp.App
 import com.example.gitlistmvp.mvp.model.GithubUser
 import com.example.gitlistmvp.mvp.model.cache.cacheOfUserRepositories.CacheOfGithubUserRepositories
+import com.example.gitlistmvp.mvp.model.room.Database
 import com.example.gitlistmvp.mvp.network.retrofit.RetrofitClient
 import com.example.gitlistmvp.mvp.network.retrofit.status.AndroidNetworkStatus
 import com.example.gitlistmvp.mvp.presentation.user.adapter.UserRVAdapter
@@ -21,13 +22,14 @@ import moxy.ktx.moxyPresenter
 
 class UserFragment : MvpAppCompatFragment(), IUserView{
 
-
     private var _binding : FragmentUserBinding? = null
     private val binding get() = _binding!!
     private var userRVAdapter : UserRVAdapter? = null
 
-    private val presenter by  moxyPresenter {
-        UserPresenter(RetrofitGithubUserRepositoriesRepo(RetrofitClient.api, AndroidNetworkStatus(App.instanceApp), CacheOfGithubUserRepositories), AndroidSchedulers.mainThread())
+    private val presenter by moxyPresenter {
+        UserPresenter(AndroidSchedulers.mainThread()).apply {
+            App.instanceApp.appComponent.inject(this)
+        }
     }
 
     override fun onCreateView(

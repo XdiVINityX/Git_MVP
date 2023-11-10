@@ -1,17 +1,17 @@
 package com.example.gitlistmvp.mvp.repositories.RetrofitGithubUsersRepo
 
-import com.example.example.UserRepos
 import com.example.gitlistmvp.mvp.model.GithubUser
 import com.example.gitlistmvp.mvp.model.cache.cacheOfUsers.ICacheGithubUsersDataBase
 import com.example.gitlistmvp.mvp.network.api.IGitUsersApi
 import com.example.gitlistmvp.mvp.network.retrofit.status.AndroidNetworkStatus
+import com.example.gitlistmvp.mvp.network.retrofit.status.INetworkStatus
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class RetrofitGithubUsersRepo(
     private val api: IGitUsersApi,
-    private val networkStatus: AndroidNetworkStatus,
+    private val networkStatus: INetworkStatus,
     private val cache: ICacheGithubUsersDataBase
 ) : IGitHubUsersRepo {
 

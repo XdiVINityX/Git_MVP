@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lessonone.databinding.FragmentUsersBinding
 import com.example.gitlistmvp.mvp.App
 import com.example.gitlistmvp.mvp.model.cache.cacheOfUsers.CacheOfGithubUsers
+import com.example.gitlistmvp.mvp.model.room.Database
 import com.example.gitlistmvp.mvp.network.retrofit.RetrofitClient
 import com.example.gitlistmvp.mvp.network.retrofit.status.AndroidNetworkStatus
 import com.example.gitlistmvp.mvp.presentation.imageLoader.GlideImageLoader
@@ -17,23 +18,20 @@ import com.example.gitlistmvp.mvp.repositories.RetrofitGithubUsersRepo.RetrofitG
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
 
 class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
+
 
     private var _binding : FragmentUsersBinding? = null
     private val binding get() = _binding!!
     private var adapter : UsersRVAdapter? = null
 
     private val presenter by moxyPresenter {
-        UsersPresenter(
-            RetrofitGithubUsersRepo(
-                RetrofitClient.api,
-                AndroidNetworkStatus(App.instanceApp),
-                CacheOfGithubUsers
-            ),
-            App.instanceApp.router, AndroidSchedulers.mainThread(), App.instanceApp.screens
-        )
+        UsersPresenter(AndroidSchedulers.mainThread()).apply {
+            App.instanceApp.appComponent.inject(this)
+        }
     }
 
     override fun onCreateView(
@@ -46,7 +44,10 @@ class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
 
 
     companion object {
-        fun newInstance() = UsersFragment()
+        fun newInstance() = UsersFragment().apply {
+            App.instanceApp.appComponent.inject(this)
+
+        }
     }
 
 

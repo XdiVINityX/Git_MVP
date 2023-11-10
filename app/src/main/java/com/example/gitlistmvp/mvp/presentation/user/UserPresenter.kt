@@ -8,11 +8,14 @@ import com.example.gitlistmvp.mvp.repositories.RetrofitGithubUsersRepo.IGitHubUs
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
+import javax.inject.Inject
 
 class UserPresenter(
-    private val retrofit: IRetrofitGithubUserRepositoriesRepo,
     private val mainThreadScheduler: Scheduler
 ) : MvpPresenter<IUserView>() {
+
+    @Inject
+    lateinit var retrofitGithubUserRepositoriesRepo: IRetrofitGithubUserRepositoriesRepo
 
     val userRepoListPresenter = UserRepoListPresenter()
 
@@ -22,7 +25,7 @@ class UserPresenter(
     }
 
      fun loadData(user : GithubUser) {
-        val disposable = retrofit.getUserRepos(user)
+        val disposable = retrofitGithubUserRepositoriesRepo.getUserRepos(user)
             .observeOn(mainThreadScheduler)
             .subscribe({
                 Log.d("list", "loadData: $it")
