@@ -25,10 +25,8 @@ import javax.inject.Singleton
 )
 interface AppComponent {
    fun inject(mainActivity: MainActivity)
-   fun inject(usersFragment : UsersFragment)
    fun inject(mainPresenter: MainPresenter)
-
-   fun inject(userPresenter: UserPresenter)
-   fun inject(usersPresenter: UsersPresenter)
+    fun inject(userPresenter: UserPresenter)
+    fun inject(usersPresenter: UsersPresenter)
 
 }

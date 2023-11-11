@@ -44,10 +44,8 @@ class UsersFragment : MvpAppCompatFragment(), UsersView,BackButtonListener {
 
 
     companion object {
-        fun newInstance() = UsersFragment().apply {
-            App.instanceApp.appComponent.inject(this)
+        fun newInstance() = UsersFragment()
 
-        }
     }
 
 
